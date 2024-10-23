@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c7f231cca29ee469e191eff3f9d242, type: 3}
+  m_Name: DefenceCardSO
+  m_EditorClassIdentifier: 
+  Name: "\uBC29\uC5B4\uC6A9\uD14C\uC2A4\uD2B8\uCE74\uB4DC"
+  Explanation: "\uC774 \uCE74\uB4DC\uB294 \uBC29\uC5B4\uC6A9 \uD14C\uC2A4\uD2B8 \uCE74\uB4DC\uC785\uB2C8\uB2E4"
+  BufTurn: 01000000
+  StatChangeValue: 01000000
+  Defence: 10
