@@ -10,7 +10,7 @@
 
 ## [기능 구현]
 ### 1. 카드 분배 및 캐릭터 이미지 위 마우스 오버시 스텟 출력
-![4](https://github.com/user-attachments/assets/9636ea16-ce9d-431b-99ea-7f751df34c8e)
+![4](https://github.com/user-attachments/assets/9636ea16-ce9d-431b-99ea-7f751df34c8e)  
 ▲ 카드가 자동으로 5장이 제공 되는 모습 & 캐릭터 위에 마우스 오버스 스테이터스 출력 
 
 
