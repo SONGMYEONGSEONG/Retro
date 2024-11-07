@@ -1,18 +1,27 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class CardController : MonoBehaviour
+
+
+public class CardController : MonoBehaviour
 {
-    [SerializeField] protected DefaultCardSO cardSO;
+    public TextMeshPro Name;
+    public TextMeshPro Desc;
+    public TextMeshPro Value;
+
+    [SerializeField] private DefaultCardSO cardSO;
+    public DefaultCardSO CardSO { get => cardSO; set => cardSO = value; }
 
     [SerializeField] private float moveSpeed = 2.0f;
-        
-    protected virtual void Awake()
+    [SerializeField] private SpriteRenderer renderer;
+
+    private void Awake()
     {
-        //InputController.OnEventCardClick += UseCard;
+        renderer = GetComponent<SpriteRenderer>();
     }
 
     private void OnEnable()
@@ -20,23 +29,33 @@ public abstract class CardController : MonoBehaviour
         InputController.OnEventCardClick += UseCard;
     }
 
-    //카드가 클릭 되었을때 효과가 사용되는 메서드입니다.
-    public virtual void UseCard()
+    public void CardDataPrint()
     {
-        Debug.Log($"{cardSO.Name} 카드 클릭! , 추상클래스로 접근됨");
+        //카드 오브젝트에 표기
+        Name.text = CardSO.Name;
+        Desc.text = CardSO.Description;
+        Value.text = CardSO.Value.ToString();
+        if (CardSO.CardSprite != null)
+        {
+            renderer.sprite = CardSO.CardSprite;
+        }
+    }
 
-
+    //카드가 클릭 되었을때 효과가 사용되는 메서드입니다.
+    public void UseCard()
+    {
+        Debug.Log($"{cardSO.Name} 카드 클릭! ");
     }
 
     //카드가 이동할시 동작하는 로직입니다.
-    public void MoveCard( Vector2 end)
+    public void MoveCard(Vector2 end)
     {
         StartCoroutine(CardMove(transform.position, end, moveSpeed));
     }
 
     private void Update()
     {
-       
+
     }
     private void OnDisable()
     {
@@ -53,6 +72,6 @@ public abstract class CardController : MonoBehaviour
 
             yield return null;
         }
-        
+
     }
 }

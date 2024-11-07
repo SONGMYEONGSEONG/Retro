@@ -2,27 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
-{
-    private DeckController currentDeck;
 
-    private void Awake()
+public class GameManager : Singleton<GameManager>
+{
+    //게임을 플레이하는 유저 변수 -> Player
+    private Player player;
+    public Player Player { get { return player; } set { player = value; } }
+
+    //게임에서 사용되는 캐릭터 -> CharacterController
+    private CharacterController[] characterControllers = new CharacterController[2];
+
+    protected override void Awake()
     {
-        if(currentDeck == null)
-        {
-            currentDeck = GetComponentInChildren<DeckController>();
-            Debug.Log($"{currentDeck.name} 컴포넌트 활성화!");
-        }
+        base.Awake();
+        characterControllers[0] = Resources.Load<CharacterController>("Prefebs/Character/HanDoLee");
         
     }
 
-    private void Update()
+    private void Start()
     {
-        /*Debug*/
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log($"{currentDeck.name} 카드뽑기!");
-            currentDeck.GetCard();
-        }
+        //캐릭터 스탠딩 오브젝트 생성
+        Instantiate(characterControllers[0]);
     }
 }
