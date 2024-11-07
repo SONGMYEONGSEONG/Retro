@@ -9,18 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44c7f231cca29ee469e191eff3f9d242, type: 3}
-  m_Name: Defence_TetCai
+  m_Script: {fileID: 11500000, guid: 756e2e59b380aa54ca91ce3c2d4d100e, type: 3}
+  m_Name: DropKick
   m_EditorClassIdentifier: 
   CardID: 0
-  Name: "\uD15F\uCE74\uC774"
-  Description: "\uD15F\uCE74\uC774 \uC124\uBA85"
-  Value: 30
+  _Name: "\uB4DC\uB86D\uD0A5"
+  Description: "\uB4DC\uB86D\uD0A5 \uC124\uBA85"
+  Value: 10
   CardSprite: {fileID: 0}
-  isBuff: 1
-  BufTurn: 01000000
-  StatChangeValue: 00000000
+  isBuff: 0
+  BufTurn: 
+  StatChangeValue: 
   isCost: 0
   StatusType: 
   CostStatChangeValue: 
-  Defence: 30

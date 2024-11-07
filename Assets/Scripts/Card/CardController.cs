@@ -32,7 +32,7 @@ public class CardController : MonoBehaviour
     public void CardDataPrint()
     {
         //카드 오브젝트에 표기
-        Name.text = CardSO.Name;
+        Name.text = CardSO._Name;
         Desc.text = CardSO.Description;
         Value.text = CardSO.Value.ToString();
         if (CardSO.CardSprite != null)
@@ -44,7 +44,7 @@ public class CardController : MonoBehaviour
     //카드가 클릭 되었을때 효과가 사용되는 메서드입니다.
     public void UseCard()
     {
-        Debug.Log($"{cardSO.Name} 카드 클릭! ");
+        Debug.Log($"{cardSO._Name} 카드 클릭! ");
     }
 
     //카드가 이동할시 동작하는 로직입니다.

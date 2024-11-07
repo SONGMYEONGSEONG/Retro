@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "DefaultCardSO", menuName = "CardSO/Default", order = 0)]
@@ -7,7 +5,7 @@ public class DefaultCardSO : ScriptableObject
 {
     [Header("Default Card Data")]
     public int CardID; //카드 아이디
-    public string Name; //카드이름
+    public string _Name; //카드이름
     public string Description; //카드설명
     public int Value; //카드 데이터(공격력,방어력 수치 등등)
     public Sprite CardSprite; //카드 이미지 
