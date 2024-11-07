@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3851533186982951356}
   - component: {fileID: 2899935341156393152}
   m_Layer: 8
-  m_Name: ' Value'
+  m_Name: Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -297,7 +297,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 1.15
+  m_fontSize: 1.1
   m_fontSizeBase: 1
   m_fontWeight: 400
   m_enableAutoSizing: 1
