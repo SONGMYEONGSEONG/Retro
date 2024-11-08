@@ -4,21 +4,21 @@ using UnityEngine;
 public class DefaultCardSO : ScriptableObject
 {
     [Header("Default Card Data")]
-    public int CardID; //Ä«µå ¾ÆÀÌµğ
-    public string _Name; //Ä«µåÀÌ¸§
-    public string Description; //Ä«µå¼³¸í
-    public int Value; //Ä«µå µ¥ÀÌÅÍ(°ø°İ·Â,¹æ¾î·Â ¼öÄ¡ µîµî)
-    public Sprite CardSprite; //Ä«µå ÀÌ¹ÌÁö 
+    public int CardID; //ì¹´ë“œ ì•„ì´ë””
+    public string _Name; //ì¹´ë“œì´ë¦„
+    public string Description; //ì¹´ë“œì„¤ëª…
+    public int Value; //ì¹´ë“œ ë°ì´í„°(ê³µê²©ë ¥,ë°©ì–´ë ¥ ìˆ˜ì¹˜ ë“±ë“±)
+    public Sprite CardSprite; //ì¹´ë“œ ì´ë¯¸ì§€ 
 
 
    [Header("Buff Card Turn Data")]
-    public bool isBuff; //ÇØ´ç Ä«µå¿¡ ¹öÇÁÈ¿°ú°¡ ÀÖ´ÂÁö Ã¼Å©
-    public int[] BufTurn; //»ç¿ë½Ã È¿°ú±â Áö¼ÓµÇ´Â ÅÏ
-    public int[] StatChangeValue; //ÅÏÀÌ Áö³­°æ¿ì º¯µ¿µÇ´Â °ªÀÇ ´ÜÀ§
+    public bool isBuff; //í•´ë‹¹ ì¹´ë“œì— ë²„í”„íš¨ê³¼ê°€ ìˆëŠ”ì§€ ì²´í¬
+    public int[] BufTurn; //ì‚¬ìš©ì‹œ íš¨ê³¼ê¸° ì§€ì†ë˜ëŠ” í„´
+    public int[] StatChangeValue; //í„´ì´ ì§€ë‚œê²½ìš° ë³€ë™ë˜ëŠ” ê°’ì˜ ë‹¨ìœ„
 
     [Header("Card Cost Data")]
-    public bool isCost; //ÇØ´ç Ä«µå¿¡ ÄÚ½ºÆ®È¿°ú°¡ ÀÖ´ÂÁö Ã¼Å©
-    public CharacterStatus[] StatusType; //»ç¿ë½Ã ÇØ´ç Cost°¡ Àû¿ëµÇ´Â Å¸ÀÔ
-    public int[] CostStatChangeValue; //»ç¿ë½Ã ÇØ´ç ½ºÅİÀÇ Cost·Î Áõ°¨µÇ´Â ¼öÄ¡
+    public bool isCost; //í•´ë‹¹ ì¹´ë“œì— ì½”ìŠ¤íŠ¸íš¨ê³¼ê°€ ìˆëŠ”ì§€ ì²´í¬
+    public CharacterStatus[] StatusType; //ì‚¬ìš©ì‹œ í•´ë‹¹ Costê°€ ì ìš©ë˜ëŠ” íƒ€ì…
+    public int[] CostStatChangeValue; //ì‚¬ìš©ì‹œ í•´ë‹¹ ìŠ¤í…Ÿì˜ Costë¡œ ì¦ê°ë˜ëŠ” ìˆ˜ì¹˜
 
 }

@@ -13,10 +13,10 @@ public enum CharacterStatus
 public class DefaultCharacterSO : ScriptableObject
 {
     [Header("Default Character Data")]
-    public int CharacterID; //Ä³¸¯ÅÍ ID
-    public string Name; //Ä³¸¯ÅÍ ÀÌ¸§
-    public int Health; //»ç¿ë½Ã Àû¿ëµÇ´Â Ã¼·Â¼öÄ¡
-    public int Attack; //»ç¿ë½Ã Àû¿ëµÇ´Â °ø°İ·Â¼öÄ¡
-    public int Defence; //»ç¿ë½Ã Àû¿ëµÇ´Â ¹æ¾î·Â
-    public Sprite CharacterSprite; //Ä³¸¯ÅÍÀÇ ÀÌ¹ÌÁö 
+    public int CharacterID; //ìºë¦­í„° ID
+    public string Name; //ìºë¦­í„° ì´ë¦„
+    public int Health; //ì‚¬ìš©ì‹œ ì ìš©ë˜ëŠ” ì²´ë ¥ìˆ˜ì¹˜
+    public int Attack; //ì‚¬ìš©ì‹œ ì ìš©ë˜ëŠ” ê³µê²©ë ¥ìˆ˜ì¹˜
+    public int Defence; //ì‚¬ìš©ì‹œ ì ìš©ë˜ëŠ” ë°©ì–´ë ¥
+    public Sprite CharacterSprite; //ìºë¦­í„°ì˜ ì´ë¯¸ì§€ 
 }
