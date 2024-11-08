@@ -3,18 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
-public class Enemy : MonoBehaviour
+//적의 루트 클래스입니다.
+public class Enemy : CharacterController
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

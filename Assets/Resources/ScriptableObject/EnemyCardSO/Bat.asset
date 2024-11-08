@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 827c73e8ea93df743a3c7cddd1df210f, type: 3}
+  m_Name: Bat
+  m_EditorClassIdentifier: 
+  CardID: 0
+  _Name: "\uBC15\uC950"
+  Description: "\uBC15\uC950 \uBAAC\uC2A4\uD130"
+  Value: 0
+  CardSprite: {fileID: 0}
+  isBuff: 0
+  BufTurn: 
+  StatChangeValue: 
+  isCost: 0
+  StatusType: 
+  CostStatChangeValue: 
+  Health: 5
+  Attack: 3
+  ActionTurn: 2
