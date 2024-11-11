@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//°ÔÀÓ¿¡¼­ »ç¿ëµÇ´Â ¸ğµç Ä«µå µ¥ÀÌÅÍ(½ºÅ©¸³Å¸ºí¿ÀºêÁ§Æ®)¸¦ º¸°üÇÏ´Â Å¬·¡½ºÀÔ´Ï´Ù.
+//ê²Œì„ì—ì„œ ì‚¬ìš©ë˜ëŠ” ëª¨ë“  ì¹´ë“œ ë°ì´í„°(ìŠ¤í¬ë¦½íƒ€ë¸”ì˜¤ë¸Œì íŠ¸)ë¥¼ ë³´ê´€í•˜ëŠ” í´ë˜ìŠ¤ì…ë‹ˆë‹¤.
 public class CardDataManager : Singleton<CardDataManager>
 {
     //public Dictionary<string, DefaultCardSO> CardDatas = new Dictionary<string, DefaultCardSO>();
@@ -23,6 +23,13 @@ public class CardDataManager : Singleton<CardDataManager>
         for (int i = 0; i < defenceCardDatas.Length; i++)
         {
             CardDatas.Add(defenceCardDatas[i].CardID, defenceCardDatas[i]);
+        }
+
+        DefaultCardSO[] enemyCardDatas = Resources.LoadAll<DefaultCardSO>("ScriptableObject/EnemyCardSO");
+
+        for (int i = 0; i < enemyCardDatas.Length; i++)
+        {
+            CardDatas.Add(enemyCardDatas[i].CardID, enemyCardDatas[i]);
         }
     }
 }

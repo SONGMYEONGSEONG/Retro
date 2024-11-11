@@ -9,9 +9,16 @@ using UnityEngine;
 
 public class CardController : MonoBehaviour
 {
+    [SerializeField] private GameObject DefaultCardData;
+    [SerializeField] private GameObject EnemyCardData;
+
     public TextMeshPro Name;
     public TextMeshPro Desc;
     public TextMeshPro Value;
+    public TextMeshPro Health;
+    public TextMeshPro Attack;
+    public TextMeshPro ActionTurn;
+
 
     [SerializeField] private DefaultCardSO cardSO;
     public DefaultCardSO CardSO { get => cardSO; set => cardSO = value; }
@@ -22,7 +29,31 @@ public class CardController : MonoBehaviour
     private void Awake()
     {
         renderer = GetComponent<SpriteRenderer>();
+
+        //if (cardSO is EnemyCardSO enemyCard)
+        //{
+        //    DefaultCardData.SetActive(true);
+        //    EnemyCardData.SetActive(false);
+        //}
+        //else
+        //{
+        //    DefaultCardData.SetActive(false);
+        //    EnemyCardData.SetActive(true);
+        //}
     }
+        
+    public void OnEnableDefaultCard()
+    {
+        DefaultCardData.SetActive(true);
+        EnemyCardData.SetActive(false);
+    }
+
+    public void OnEnanleEnemyCard()
+    {
+        DefaultCardData.SetActive(false);
+        EnemyCardData.SetActive(true);
+    }
+
 
     private void OnEnable()
     {
@@ -31,23 +62,41 @@ public class CardController : MonoBehaviour
 
     public void CardDataPrint()
     {
-        //Ä«µå ¿ÀºêÁ§Æ®¿¡ Ç¥±â
+        //ì¹´ë“œ ì˜¤ë¸Œì íŠ¸ì— í‘œê¸°
         Name.text = CardSO._Name;
         Desc.text = CardSO.Description;
-        Value.text = CardSO.Value.ToString();
+
+        if (DefaultCardData.activeSelf)
+        {
+            Value.text = CardSO.Value.ToString();
+        }
+
+        else if(EnemyCardData.activeSelf)
+        {
+            if (cardSO is EnemyCardSO enemyCard)
+            {
+                Health.text = enemyCard.Health.ToString();
+                Attack.text = enemyCard.Attack.ToString();
+                ActionTurn.text = enemyCard.ActionTurn.ToString();
+            }
+        }
+        //EnemyCardì˜ ê²½ìš° ë°ì´í„° í‘œê¸° ë³€ê²½
+      
+
+        //ì¹´ë“œ ì´ë¯¸ì§€ ì¶œë ¥
         if (CardSO.CardSprite != null)
         {
             renderer.sprite = CardSO.CardSprite;
         }
     }
 
-    //Ä«µå°¡ Å¬¸¯ µÇ¾úÀ»¶§ È¿°ú°¡ »ç¿ëµÇ´Â ¸Ş¼­µåÀÔ´Ï´Ù.
+    //ì¹´ë“œê°€ í´ë¦­ ë˜ì—ˆì„ë•Œ íš¨ê³¼ê°€ ì‚¬ìš©ë˜ëŠ” ë©”ì„œë“œì…ë‹ˆë‹¤.
     public void UseCard()
     {
-        Debug.Log($"{cardSO._Name} Ä«µå Å¬¸¯! ");
+        Debug.Log($"{cardSO._Name} ì¹´ë“œ í´ë¦­! ");
     }
 
-    //Ä«µå°¡ ÀÌµ¿ÇÒ½Ã µ¿ÀÛÇÏ´Â ·ÎÁ÷ÀÔ´Ï´Ù.
+    //ì¹´ë“œê°€ ì´ë™í• ì‹œ ë™ì‘í•˜ëŠ” ë¡œì§ì…ë‹ˆë‹¤.
     public void MoveCard(Vector2 end)
     {
         StartCoroutine(CardMove(transform.position, end, moveSpeed));
@@ -74,4 +123,5 @@ public class CardController : MonoBehaviour
         }
 
     }
+
 }

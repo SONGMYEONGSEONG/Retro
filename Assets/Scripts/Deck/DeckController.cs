@@ -9,13 +9,13 @@ public struct CardPos
     public Vector2 Position;
 }
 
-//Ä«µå¸¦ ÄÁÅ×ÀÌ³Ê·Î ÀúÀåÇÏ°í ÀÖ°í »ç¿ë½Ã Ä«µå¸¦ ¿ùµå¿¡ »ı¼ºÇØÁÖ´Â Å¬·¡½ºÀÔ´Ï´Ù.
+//ì¹´ë“œë¥¼ ì»¨í…Œì´ë„ˆë¡œ ì €ì¥í•˜ê³  ìˆê³  ì‚¬ìš©ì‹œ ì¹´ë“œë¥¼ ì›”ë“œì— ìƒì„±í•´ì£¼ëŠ” í´ë˜ìŠ¤ì…ë‹ˆë‹¤.
 public class DeckController : MonoBehaviour
 {
     public Queue<CardController> Deck = new Queue<CardController>();
     public DeckSO deckListData;
 
-    [SerializeField] private CardPos[] cardPositions; //Ä«µå°³ ¹èÄ¡µÇ´Â ÁÂÇ¥ÀÇ À§Ä¡
+    [SerializeField] private CardPos[] cardPositions; //ì¹´ë“œê°œ ë°°ì¹˜ë˜ëŠ” ì¢Œí‘œì˜ ìœ„ì¹˜
     private int index = 0;
 
     private void Start()
@@ -34,17 +34,11 @@ public class DeckController : MonoBehaviour
 
     }
 
-    //CardDataSeeting ±â´ÉÀÔ´Ï´Ù. µğ¹ö±×¸ñÀûÀ¸·Î »ç¿ëÇÏ´Â°Å¶ó ¼öÁ¤ÀÌ ÇÊ¿äÇÕ´Ï´Ù.
-    private void DebugCardDataSetting()
-    {
-
-    }
-
     public CardController GetCard()
     {
         if(Deck.Count <= 0)
         {
-            Debug.Log("Deck¿¡ Ä«µå°¡ ¾ø½À´Ï´Ù.");
+            Debug.Log("Deckì— ì¹´ë“œê°€ ì—†ìŠµë‹ˆë‹¤.");
             return null;
         }
 
