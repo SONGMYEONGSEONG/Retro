@@ -15,13 +15,13 @@ MonoBehaviour:
   CardCount: 10
   cards:
   - {fileID: 11400000, guid: 4903bbf9042be7546a4f63cdc695cfef, type: 2}
-  - {fileID: 11400000, guid: 4903bbf9042be7546a4f63cdc695cfef, type: 2}
+  - {fileID: 11400000, guid: ae2bd0dcf3d2a2142bc4f30021c58e8a, type: 2}
   - {fileID: 11400000, guid: 5d74adfb83b6f104ea22d3753aaeb7ed, type: 2}
-  - {fileID: 11400000, guid: 5d74adfb83b6f104ea22d3753aaeb7ed, type: 2}
+  - {fileID: 11400000, guid: ae2bd0dcf3d2a2142bc4f30021c58e8a, type: 2}
   - {fileID: 11400000, guid: 5d74adfb83b6f104ea22d3753aaeb7ed, type: 2}
   - {fileID: 11400000, guid: 5d74adfb83b6f104ea22d3753aaeb7ed, type: 2}
   - {fileID: 11400000, guid: 60217dff7182d1942a2384168d6f9802, type: 2}
-  - {fileID: 11400000, guid: 60217dff7182d1942a2384168d6f9802, type: 2}
+  - {fileID: 11400000, guid: ae2bd0dcf3d2a2142bc4f30021c58e8a, type: 2}
   - {fileID: 11400000, guid: 60217dff7182d1942a2384168d6f9802, type: 2}
   - {fileID: 11400000, guid: 60217dff7182d1942a2384168d6f9802, type: 2}
   - {fileID: 11400000, guid: 60217dff7182d1942a2384168d6f9802, type: 2}
