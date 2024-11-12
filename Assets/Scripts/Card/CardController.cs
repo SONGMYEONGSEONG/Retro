@@ -19,7 +19,6 @@ public class CardController : MonoBehaviour
     public TextMeshPro Attack;
     public TextMeshPro ActionTurn;
 
-
     [SerializeField] private DefaultCardSO cardSO;
     public DefaultCardSO CardSO { get => cardSO; set => cardSO = value; }
 
@@ -30,16 +29,6 @@ public class CardController : MonoBehaviour
     {
         renderer = GetComponent<SpriteRenderer>();
 
-        //if (cardSO is EnemyCardSO enemyCard)
-        //{
-        //    DefaultCardData.SetActive(true);
-        //    EnemyCardData.SetActive(false);
-        //}
-        //else
-        //{
-        //    DefaultCardData.SetActive(false);
-        //    EnemyCardData.SetActive(true);
-        //}
     }
         
     public void OnEnableDefaultCard()
