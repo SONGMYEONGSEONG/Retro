@@ -2,12 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CharacterStatus
-{
-    Health = 0,
-    Attack = 1,
-    Defence = 2,
-}
+
 
 [CreateAssetMenu(fileName = "DefaultCharacterSO", menuName = "CharacterSO/Default", order = 2)]
 public class DefaultCharacterSO : ScriptableObject

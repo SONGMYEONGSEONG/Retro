@@ -2,15 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using System.Linq;
-
-public enum CharacterPos
-{
-    NONE = 0, LEFT = 1 , RIGHT = 2 , All = 3
-}
-
-
-
+using Structs;
+using Enums;
 
 public class TextFileStream : MonoBehaviour
 {
@@ -61,10 +54,10 @@ public class TextFileStream : MonoBehaviour
 
             talkDatas.Add(talkData);
 
-            //Debug.Log("ÆÄÀÏ ÀÌ¸§ : "  + talkDatas.Last().fileName);
-            //Debug.Log("ÀÌ¸§ : " + talkDatas.Last().name);
-            //Debug.Log("³»¿ë : " + talkDatas.Last().talkData);
-            //Debug.Log("´ëÈ­ ¼Óµµ : " + talkDatas.Last().talkSpeed);
+            //Debug.Log("íŒŒì¼ ì´ë¦„ : "  + talkDatas.Last().fileName);
+            //Debug.Log("ì´ë¦„ : " + talkDatas.Last().name);
+            //Debug.Log("ë‚´ìš© : " + talkDatas.Last().talkData);
+            //Debug.Log("ëŒ€í™” ì†ë„ : " + talkDatas.Last().talkSpeed);
         }
     }
 

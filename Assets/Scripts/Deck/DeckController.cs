@@ -1,13 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Structs;
 
-[System.Serializable]
-public struct CardPos
-{
-    public bool IsCard;
-    public Vector2 Position;
-}
 
 //카드를 컨테이너로 저장하고 있고 사용시 카드를 월드에 생성해주는 클래스입니다.
 public class DeckController : MonoBehaviour

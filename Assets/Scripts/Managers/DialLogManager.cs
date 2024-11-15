@@ -1,118 +1,55 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Text;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using Enums;
 
-//ExcelImporter »ç¿ëÇÏ±â
-//https://github.com/mikito/unity-excel-importer
+//20240913 : ExcelImporter  -> CsvReaderë¡œ ë³€ê²½í•˜ì—¬ ìƒìš©í•  ì˜ˆì • 
 
-//20240913 ExcelImporter »ç¿ë¾ÈÇÔ
-//CsvReader·Î º¯°æÇÏ¿© »ó¿ëÇÒ ¿¹Á¤ 
-
-public class DialogeSystem : MonoBehaviour
+public class DialogeManager : Singleton<DialogeManager>
 {
-    //ExcelImporter »ç¿ë
-    //[SerializeField] DialogDB dialogDB;
-
     List<Dictionary<string, object>> data_Dialog;
 
-    [SerializeField] Image leftTalker; 
-    [SerializeField] Image rightTalker;
-    [SerializeField] Image indicator;
-    [SerializeField] Text nameText; //¸»ÇÏ´Â »ç¶÷ÀÇÀÌ¸§
-    [SerializeField] Text talkText; //Ã¤ÆÃ ¹Ú½º
+    [SerializeField] private Image leftTalker; //ì™¼ìª½ ìºë¦­í„° ì¼ëŸ¬ìŠ¤íŠ¸
+    [SerializeField] private Image rightTalker; //ì˜¤ë¥¸ìª½ ìºë¦­í„° ì¼ëŸ¬ìŠ¤íŠ¸
+    [SerializeField] private Image indicator; //ëŒ€í™”ì‹œ ë‚˜íƒ€ë‚˜ëŠ” ë°©í–¥í‘œì§€ UI
+    [SerializeField] private TextMeshProUGUI nameText; //ë§í•˜ëŠ” ì‚¬ëŒì˜ì´ë¦„
+    [SerializeField] TextMeshProUGUI talkTextBox; //ì±„íŒ… ë°•ìŠ¤
 
-    [SerializeField] DialogSelectWindow selectWindow;
+    [SerializeField] DialogSelectWindow selectWindow; //ëŒ€í™”ì‹œ ì„ íƒì§€ê´€ë ¨ ì»´í¬ë„ŒíŠ¸
 
-    //ExcelImporter »ç¿ë
-    //private TalkData talkDataBuf;
-    //List<DialogDBEntity> curStageDialoge;
-
-    List<TalkData> talkDataBuf = new List<TalkData> ();
     int index = 0;
     bool isPrinting = false;
     bool isLineSkip = false;
 
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
     private void Start()
     {
-        //ExcelImporter »ç¿ë
-        //talkDataBuf = new TalkData();
-
-        //ExcelImporter »ç¿ë º¯¼ö
-        //DialogLoad("Stage2");
-
         data_Dialog = CSVReader.Read("CSVs/DialogDB(Stage1)");
 
         leftTalker.gameObject.SetActive(false);
         rightTalker.gameObject.SetActive(false);
 
         SelectButton.SelectButtonHandler += SetTalkDataIndex;
-
-        //for (int i = 0; i < data_Dialog.Count; i++)
-        //{
-        //    //print(data_Dialog[i]["fileName"].ToString());
-        //    //print(data_Dialog[i]["pos"].ToString());
-        //    //print(data_Dialog[i]["offPos"].ToString());
-        //    //print(data_Dialog[i]["name"].ToString());
-        //    //print(data_Dialog[i]["talkData"].ToString());
-        //    //print(data_Dialog[i]["talkSpeed"].ToString());
-        //    //print(data_Dialog[i]["bgmName"].ToString());
-        //    //print(data_Dialog[i]["sfxName"].ToString());
-        //}
-
     }
-
-    public void DialogLoad(string StageName)
-    {
-        //ExcelImporter »ç¿ë º¯¼ö
-        //object curStage = dialogDB.PrintField(StageName);
-        //curStageDialoge = (List<DialogDBEntity>)curStage;
-    }
-
-    /*
-    private void DialogToTalkData()
-    {
-        talkDataBuf.fileName = curStageDialoge[index].fileName;
-        talkDataBuf.pos = (CharacterPos)curStageDialoge[index].pos;
-        talkDataBuf.offPos = (CharacterPos)curStageDialoge[index].offPos;
-        talkDataBuf.name = curStageDialoge[index].name;
-        talkDataBuf.select = curStageDialoge[index].select;
-        talkDataBuf.talkData = curStageDialoge[index].talkData;
-        talkDataBuf.talkSpeed = curStageDialoge[index].talkSpeed;
-        talkDataBuf.bgmName = curStageDialoge[index].bgmName;
-        talkDataBuf.sfxName = curStageDialoge[index].sfxName;
-    }
-    */
 
     private void Update()
     {
-        //ExcelImporter »ç¿ë º¯¼ö
-        //if (!isPrinting && curStageDialoge.Count > index)
         if (!isPrinting && data_Dialog.Count >index)
         {
-            //ExcelImporter »ç¿ë º¯¼ö
-            //DialogToTalkData();
-
-            //ExcelImporter »ç¿ë º¯¼ö
-            //³ªÁß¿¡ º¯°æÇÒ°Í 
-            //if (talkDataBuf.select == "Y") //¼±ÅÃÁö
             if(data_Dialog[index]["select"].ToString() == "Y")
             {
                 SelectsPrint();
             }
-            else //ÀÏ¹İ ´ë»ç
+            else //ì¼ë°˜ ëŒ€ì‚¬
             {
-                //ExcelImporter »ç¿ë º¯¼ö
-                //StartCoroutine(TalkPrint(talkDataBuf));
                 StartCoroutine(TalkPrint(data_Dialog[index]));
             }
-            //ExcelImporter »ç¿ë º¯¼ö
-            //BgmPlay(talkDataBuf.bgmName);
-            //SfxPlayOneShot(talkDataBuf.sfxName);
 
             BgmPlay(data_Dialog[index]["bgmName"].ToString());
             SfxPlayOneShot(data_Dialog[index]["sfxName"].ToString());
@@ -130,7 +67,6 @@ public class DialogeSystem : MonoBehaviour
     {
         index += value;
         Debug.Log(index + " " + value + " " + index+value);
-        //SelectButton.SelectButtonHandler -= SetTalkDataIndex;
 
         if (selectWindow.gameObject.activeSelf)
         {
@@ -145,8 +81,6 @@ public class DialogeSystem : MonoBehaviour
             selectWindow.gameObject.SetActive(true);
         }
 
-        //ExcelImporter »ç¿ë º¯¼ö
-        //selectWindow.PrintSelectData(talkDataBuf);
         selectWindow.PrintSelectData(data_Dialog[index]);
     }
 
@@ -208,11 +142,9 @@ public class DialogeSystem : MonoBehaviour
     private void NameTalkDataClear()
     {
         nameText.text = "";
-        talkText.text = "";
+        talkTextBox.text = "";
     }
 
-    //ExcelImporter »ç¿ë º¯¼ö
-    //IEnumerator TalkPrint(TalkData talkData)
     IEnumerator TalkPrint(Dictionary<string, object> talkData)
     {
         isPrinting = true;
@@ -228,11 +160,11 @@ public class DialogeSystem : MonoBehaviour
         {
             buf += ch;
             yield return new WaitForSeconds((float)talkData["talkSpeed"]);
-            talkText.text = buf;
+            talkTextBox.text = buf;
 
             if (isLineSkip)
             {
-                talkText.text = talkData["talkData"].ToString();  // ÀüÃ¼ ÅØ½ºÆ®¸¦ ÇÑ ¹ø¿¡ Ãâ·Â
+                talkTextBox.text = talkData["talkData"].ToString();  // ì „ì²´ í…ìŠ¤íŠ¸ë¥¼ í•œ ë²ˆì— ì¶œë ¥
                 break;
             }
         }
@@ -241,33 +173,5 @@ public class DialogeSystem : MonoBehaviour
         isPrinting = false;
         isLineSkip = false;
 
-        //ExcelImporter »ç¿ë º¯¼ö
-        /*
-           isPrinting = true;
-
-        ONCharacterImg(talkData.fileName,talkData.pos);
-        OFFCharacterImg(talkData.offPos);
-
-        NameTalkDataClear();
-
-        nameText.text = talkData.name;
-        string buf = "";
-        foreach (char ch in talkData.talkData)
-        {
-            buf += ch;
-            yield return new WaitForSeconds(talkData.talkSpeed);
-            talkText.text = buf;
-
-            if (isLineSkip)
-            {
-                talkText.text = talkData.talkData;  // ÀüÃ¼ ÅØ½ºÆ®¸¦ ÇÑ ¹ø¿¡ Ãâ·Â
-                break;
-            }
-        }
-
-        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
-        isPrinting = false;
-        isLineSkip = false;
-         */
     }
 }

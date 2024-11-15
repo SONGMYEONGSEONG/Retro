@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using Enums;
 public class DefaultCardSO : ScriptableObject
 {
     [Header("Default Card Data")]
