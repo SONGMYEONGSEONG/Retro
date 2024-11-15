@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "AttackCardSO", menuName = "CardSO/Attack", order = 1)]
+[CreateAssetMenu(fileName = "AttackCardSO", menuName = "CardSO/Attack", order = 0)]
 public class AttackCardSO : DefaultCardSO
 {
-    [Header("Attack Card Data")]
-    public int Attack; //»ç¿ë½Ã Àû¿ëµÇ´Â °ø°İ·Â¼öÄ¡
-
+    [Header("Attack Data")]
+    public int Attack; //ì¹´ë“œì˜ ê³µê²©ë ¥
+    public int AttackCount; //ê³µê²© íšŸìˆ˜ 
 
 }

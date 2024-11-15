@@ -1,21 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Trigger : MonoBehaviour
 {
+
     private void Awake()
     {
         Player playerPrefeb = Resources.Load<Player>("Prefebs/Player/Player") ;
 
         if (playerPrefeb != null)
         {
-            //ÇÃ·¹ÀÌ¾î ¿ÀºêÁ§Æ®¸¦ ÇÏÀÌ¾î¶óÅ°¿¡ »ı¼º ÈÄ °ÔÀÓ¸Å´ÏÀú¿¡ ÃÊ±âÈ­
+            //í”Œë ˆì´ì–´ ì˜¤ë¸Œì íŠ¸ë¥¼ í•˜ì´ì–´ë¼í‚¤ì— ìƒì„± í›„ ê²Œì„ë§¤ë‹ˆì €ì— ì´ˆê¸°í™”
             GameManager.Instance.Player = Instantiate(playerPrefeb);
         }
         else
         {
-            Debug.Log($"{gameObject.name}ÀÇ {playerPrefeb.name}ÀÌ null ÀÔ´Ï´Ù.");
+            Debug.Log($"{gameObject.name}ì˜ {playerPrefeb.name}ì´ null ì…ë‹ˆë‹¤.");
         }
 
     }

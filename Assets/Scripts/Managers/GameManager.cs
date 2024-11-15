@@ -5,23 +5,28 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    //°ÔÀÓÀ» ÇÃ·¹ÀÌÇÏ´Â À¯Àú º¯¼ö -> Player
+    //ê²Œì„ì„ í”Œë ˆì´í•˜ëŠ” ìœ ì € ë³€ìˆ˜ -> Player
     private Player player;
     public Player Player { get { return player; } set { player = value; } }
 
-    //°ÔÀÓ¿¡¼­ »ç¿ëµÇ´Â Ä³¸¯ÅÍ -> CharacterController
-    private CharacterController[] characterControllers = new CharacterController[2];
+    private CharacterController[] characterPrefebs;
+    //ê²Œì„ì—ì„œ ì‚¬ìš©ë˜ëŠ” ìºë¦­í„° -> CharacterController
+    private List<CharacterController> characterControllers = new List<CharacterController>();
 
     protected override void Awake()
     {
         base.Awake();
-        characterControllers[0] = Resources.Load<CharacterController>("Prefebs/Character/HanDoLee");
-        
+        characterPrefebs = Resources.LoadAll<CharacterController>("Prefebs/Character");
+        //ìºë¦­í„° ìŠ¤íƒ ë”© ì˜¤ë¸Œì íŠ¸ ìƒì„±
+        for (int i = 0; i < characterPrefebs.Length; i++)
+        {
+            characterControllers.Add(Instantiate(characterPrefebs[i]));
+        }
     }
 
     private void Start()
     {
-        //Ä³¸¯ÅÍ ½ºÅÄµù ¿ÀºêÁ§Æ® »ı¼º
-        Instantiate(characterControllers[0]);
+
+        
     }
 }

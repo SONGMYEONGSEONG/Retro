@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using DG.Tweening;
 
 
-
-public class CardController : MonoBehaviour
+public abstract class CardController : MonoBehaviour , ICard
 {
     public TextMeshPro Name;
     public TextMeshPro Desc;
@@ -16,62 +16,30 @@ public class CardController : MonoBehaviour
     [SerializeField] private DefaultCardSO cardSO;
     public DefaultCardSO CardSO { get => cardSO; set => cardSO = value; }
 
-    [SerializeField] private float moveSpeed = 2.0f;
-    [SerializeField] private SpriteRenderer renderer;
+    [SerializeField] protected SpriteRenderer renderer;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         renderer = GetComponent<SpriteRenderer>();
+    }
+        
+
+    //ì¹´ë“œê°€ ì´ë™í• ì‹œ ë™ìž‘í•˜ëŠ” ë¡œì§ìž…ë‹ˆë‹¤.
+    public void MoveCard(Vector2 end)
+    {
+        transform.DOMove(end,0.2f).SetEase(Ease.OutCubic);
     }
 
     private void OnEnable()
     {
-        InputController.OnEventCardClick += UseCard;
-    }
-
-    public void CardDataPrint()
-    {
-        //Ä«µå ¿ÀºêÁ§Æ®¿¡ Ç¥±â
-        Name.text = CardSO.Name;
-        Desc.text = CardSO.Description;
-        Value.text = CardSO.Value.ToString();
-        if (CardSO.CardSprite != null)
-        {
-            renderer.sprite = CardSO.CardSprite;
-        }
-    }
-
-    //Ä«µå°¡ Å¬¸¯ µÇ¾úÀ»¶§ È¿°ú°¡ »ç¿ëµÇ´Â ¸Þ¼­µåÀÔ´Ï´Ù.
-    public void UseCard()
-    {
-        Debug.Log($"{cardSO.Name} Ä«µå Å¬¸¯! ");
-    }
-
-    //Ä«µå°¡ ÀÌµ¿ÇÒ½Ã µ¿ÀÛÇÏ´Â ·ÎÁ÷ÀÔ´Ï´Ù.
-    public void MoveCard(Vector2 end)
-    {
-        StartCoroutine(CardMove(transform.position, end, moveSpeed));
-    }
-
-    private void Update()
-    {
-
+        InputController.OnEventCardClick += ClickUseCard;
     }
     private void OnDisable()
     {
-        InputController.OnEventCardClick -= UseCard;
+        InputController.OnEventCardClick -= ClickUseCard;
     }
 
-    IEnumerator CardMove(Vector2 start, Vector2 end, float Speed)
-    {
-        float elspedTime = 0f;
-        while (Vector2.Distance(transform.position, end) > 0.1f)
-        {
-            elspedTime += Time.deltaTime;
-            transform.position = Vector2.Lerp(start, end, Speed * elspedTime);
-
-            yield return null;
-        }
-
-    }
+    public abstract  void DrawUseCard();
+    public abstract  void ClickUseCard();
+    public abstract void CardDataPrint();
 }

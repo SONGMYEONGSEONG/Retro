@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "DefenceCardSO", menuName = "CardSO/Defence", order = 2)]
+[CreateAssetMenu(fileName = "DefenceCardSO", menuName = "CardSO/Defence", order = 1)]
 public class DefenceCardSO : DefaultCardSO
 {
-    [Header("Defence Card Data")]
-    public int Defence; //»ç¿ë½Ã Àû¿ëµÇ´Â ¹æ¾î·Â
-
+    [Header("Defence Data")]
+    public int Defence; //ì¹´ë“œì˜ ë°©ì–´ë ¥
 }
