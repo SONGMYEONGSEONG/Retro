@@ -25,7 +25,7 @@ public class CardDataManager : Singleton<CardDataManager>
             CardDatas.Add(defenceCardDatas[i].CardID, defenceCardDatas[i]);
         }
 
-        DefaultCardSO[] enemyCardDatas = Resources.LoadAll<DefaultCardSO>("ScriptableObject/EnemyCardSO");
+        EnemyCardSO[] enemyCardDatas = Resources.LoadAll<EnemyCardSO>("ScriptableObject/EnemyCardSO");
 
         for (int i = 0; i < enemyCardDatas.Length; i++)
         {

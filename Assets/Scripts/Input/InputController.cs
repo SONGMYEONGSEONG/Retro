@@ -6,25 +6,25 @@ using UnityEngine.InputSystem;
 
 public class InputController : MonoBehaviour
 {
-    //staticÀº Å×½ºÆ® ¸ñÀû, ³ªÁß¿¡ ¹Ù²ã¾ßÇÔ 
+    //staticì€ í…ŒìŠ¤íŠ¸ ëª©ì , ë‚˜ì¤‘ì— ë°”ê¿”ì•¼í•¨ 
     public static event Action OnEventCardClick;
     public LayerMask CardLayerMask;
     private void Start()
     {
-        Debug.Log("±â¸ğ¶ì");
+        Debug.Log("ê¸°ëª¨ë ");
         CardLayerMask = 1 << 8;
     }
 
     public void OnSelect(InputValue value)
     {
-        Vector2 worldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());//È­¸é ÁÂÇ¥°è¿¡ ÀÖ±â¿¡ ¿ùµå ÁÂÇ¥·Î º¯È¯
+        Vector2 worldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());//í™”ë©´ ì¢Œí‘œê³„ì— ìˆê¸°ì— ì›”ë“œ ì¢Œí‘œë¡œ ë³€í™˜
         RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero, 0f, CardLayerMask);
 
         if (hit.collider != null)
         {
             Debug.Log(hit.transform.name);
 
-            hit.transform.GetComponent<CardController>().UseCard();
+            hit.transform.GetComponent<CardController>().ClickUseCard();
 
             //OnEventCardClick?.Invoke();
         }

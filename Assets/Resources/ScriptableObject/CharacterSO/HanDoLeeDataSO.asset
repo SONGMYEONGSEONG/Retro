@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e042a13c67cde6c48bf61fca6c879c47, type: 3}
   m_Name: HanDoLeeDataSO
   m_EditorClassIdentifier: 
+  CharacterID: 0
   Name: "\uD55C\uB3C4\uC774"
+  Health: 0
   Attack: 10
   Defence: 5
   CharacterSprite: {fileID: 21300000, guid: 0b83b5bd4e37d4a408dfe6018fe61dcc, type: 3}

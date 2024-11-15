@@ -18,8 +18,8 @@ MonoBehaviour:
   Value: 10
   CardSprite: {fileID: 0}
   isBuff: 0
-  BufTurn: 
-  StatChangeValue: 
-  isCost: 0
+  BufTurn: 0100000001000000
+  StatChangeValue: 0300000000000000
+  isCost: 1
   StatusType: 
   CostStatChangeValue: 

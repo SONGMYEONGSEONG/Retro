@@ -22,16 +22,16 @@ public class CardCreateManager : Singleton<CardCreateManager>
         CardController card = Instantiate(cardControllerPrefeb, GameManager.Instance.Player.CurrentDeck.transform);
         card.CardSO = cardData;
 
-        //들어온 카드SO에따라 데이터 표기 및 적용을 다르게 진행 
-        if (card.CardSO is EnemyCardSO enemyCard)
-        {
-            card.OnEnanleEnemyCard();
+        ////들어온 카드SO에따라 데이터 표기 및 적용을 다르게 진행 
+        //if (card.CardSO is EnemyCardSO enemyCard)
+        //{
+        //    card.OnEnanleEnemyCard();
            
-        }
-        else
-        {
-            card.OnEnableDefaultCard();
-        }
+        //}
+        //else
+        //{
+        //    card.OnEnableDefaultCard();
+        //}
 
         card.CardDataPrint();
         card.gameObject.SetActive(false);
