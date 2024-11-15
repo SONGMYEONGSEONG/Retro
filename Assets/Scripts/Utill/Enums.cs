@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Enums
 {
+
     public enum CharacterStatus
     {
         Health = 0,

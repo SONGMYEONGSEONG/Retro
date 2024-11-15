@@ -15,6 +15,7 @@ namespace Structs
         public float talkSpeed;
         public string bgmName;
         public string sfxName;
+      
     }
 
     [System.Serializable]
@@ -23,4 +24,6 @@ namespace Structs
         public bool IsCard;
         public Vector2 Position;
     }
+
+
 }
