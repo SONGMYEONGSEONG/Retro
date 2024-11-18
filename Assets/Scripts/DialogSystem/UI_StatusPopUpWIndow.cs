@@ -4,9 +4,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_StatusPopUpWIndow : MonoBehaviour
+public class UI_StatusPopUpWIndow : UIBase
 {
-    private CharacterController characterController;//ÇØ´ç Ä³¸¯ÅÍÀÇ ½ºÅİÀ» ÀĞ¾î¿À±âÀ§ÇØ ÂüÁ¶ÇÔ
+    private CharacterController characterController;//í•´ë‹¹ ìºë¦­í„°ì˜ ìŠ¤í…Ÿì„ ì½ì–´ì˜¤ê¸°ìœ„í•´ ì°¸ì¡°í•¨
 
     public TextMeshProUGUI AtkText;
     public TextMeshProUGUI DefText;
@@ -18,7 +18,7 @@ public class UI_StatusPopUpWIndow : MonoBehaviour
 
         if (characterController == null)
         {
-            Debug.Log($"{characterController.name}ÀÌ NullÀÔ´Ï´Ù.");
+            Debug.Log($"{characterController.name}ì´ Nullì…ë‹ˆë‹¤.");
         }
     }
 

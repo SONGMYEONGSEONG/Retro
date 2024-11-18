@@ -4,22 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Enums;
-
+using Constains;
+using System.Text;
 //20240913 : ExcelImporter  -> CsvReader로 변경하여 상용할 예정 
 
 
 public class DialogeManager : Singleton<DialogeManager>
 {
-    private readonly string FileName = "FileName";
-    private readonly string Pos = "Pos";
-    private readonly string OffPos = "OffPos";
-    private readonly string Name = "Name";
-    private readonly string Select = "Select";
-    private readonly string TalkData = "TalkData";
-    private readonly string TalkSpeed = "TalkSpeed";
-    private readonly string BgmName = "BgmName";
-    private readonly string SfxName = "SfxName";
-
+   
     List<Dictionary<string, object>> data_Dialog;
 
     [SerializeField] private Image leftTalker; //왼쪽 캐릭터 일러스트
@@ -28,11 +20,18 @@ public class DialogeManager : Singleton<DialogeManager>
     [SerializeField] private TextMeshProUGUI nameText; //말하는 사람의이름
     [SerializeField] TextMeshProUGUI talkTextBox; //채팅 박스
 
-    [SerializeField] DialogSelectWindow selectWindow; //대화시 선택지관련 컴포넌트
+    [SerializeField] UI_DialogSelectWindow selectWindow; //대화시 선택지관련 컴포넌트
 
     int index = 0; //현재 CSV의 저장된 문자열 순서(인덱스)
     bool isPrinting = false; //현재 문장이 출력중인지 체크하는 변수
     bool isLineSkip = false; //입력값이 있으면 해당 문장을 다 출력해주는 기능
+
+    public int CallStageDialogNum = 0;
+
+    private StringBuilder strBuilder = new StringBuilder();
+
+    private WaitUntil dialogPrintSkip = new WaitUntil(() => Input.GetMouseButtonDown(0));
+
 
     protected override void Awake()
     {
@@ -41,14 +40,18 @@ public class DialogeManager : Singleton<DialogeManager>
 
     private void Start()
     {
-        data_Dialog = CSVReader.Read("CSVs/Stage2"); //CSVReader의 Read 메서드로 해당 엑셀csv 데이터를 읽어온다.
+        strBuilder.Clear();
+        strBuilder.Append(DialogeSystemType.DialogeFilePath);
+        strBuilder.Append(CallStageDialogNum.ToString());
+
+        data_Dialog = CSVReader.Read(strBuilder.ToString()); //CSVReader의 Read 메서드로 해당 엑셀csv 데이터를 읽어온다.
 
         //캐릭터 왼쪽,오른쪽 이미지 출력 X
         leftTalker.gameObject.SetActive(false);
         rightTalker.gameObject.SetActive(false);
 
         //선택지가 주어질때 동작하는 이벤트 함수 설정
-        SelectButton.SelectButtonHandler += SetTalkDataIndex;
+        UI_SelectButton.SelectButtonHandler += SetTalkDataIndex;
     }
 
     private void Update()
@@ -57,7 +60,7 @@ public class DialogeManager : Singleton<DialogeManager>
         if (!isPrinting && index < data_Dialog.Count)
         {
 
-            if ((bool)data_Dialog[index][Select])
+            if ((bool)data_Dialog[index][DialogeSystemType.Select])
             {
                 SelectsPrint();
             }
@@ -66,8 +69,8 @@ public class DialogeManager : Singleton<DialogeManager>
                 StartCoroutine(TalkPrint(data_Dialog[index]));
             }
 
-            BgmPlay((string)data_Dialog[index][BgmName]);
-            SfxPlayOneShot((string)data_Dialog[index][SfxName]);
+            BgmPlay((string)data_Dialog[index][DialogeSystemType.BgmName]);
+            SfxPlayOneShot((string)data_Dialog[index][DialogeSystemType.SfxName]);
 
             index++;
         }
@@ -81,6 +84,8 @@ public class DialogeManager : Singleton<DialogeManager>
     public void SetTalkDataIndex(int value)
     {
         index += value;
+
+        //선택지에따라 해당 대화 브런치(가지)로 이동하는 것을 디버깅하는 로그 
         Debug.Log(index + " " + value + " " + index + value);
 
         if (selectWindow.gameObject.activeSelf)
@@ -125,12 +130,12 @@ public class DialogeManager : Singleton<DialogeManager>
             {
                 case CharacterPos.LEFT:
                     leftTalker.gameObject.SetActive(true);
-                    leftTalker.sprite = Resources.Load<Sprite>("Sprite/" + fileName);
+                    leftTalker.sprite = Resources.Load<Sprite>(DialogeSystemType.CharacterSpritePath + fileName);
                     break;
 
                 case CharacterPos.RIGHT:
                     rightTalker.gameObject.SetActive(true);
-                    rightTalker.sprite = Resources.Load<Sprite>("Sprite/" + fileName);
+                    rightTalker.sprite = Resources.Load<Sprite>(DialogeSystemType.CharacterSpritePath + fileName);
                     break;
             }
         }
@@ -164,27 +169,28 @@ public class DialogeManager : Singleton<DialogeManager>
     {
         isPrinting = true;
 
-        ONCharacterImg(talkData[FileName].ToString(), (CharacterPos)talkData[Pos]);
-        OFFCharacterImg((CharacterPos)talkData[OffPos]);
+        ONCharacterImg(talkData[DialogeSystemType.FileName].ToString(), (CharacterPos)talkData[DialogeSystemType.Pos]);
+        OFFCharacterImg((CharacterPos)talkData[DialogeSystemType.OffPos]);
 
         NameTalkDataClear();
 
-        nameText.text = talkData[Name].ToString();
+        nameText.text = talkData[DialogeSystemType.Name].ToString();
         string buf = "";
-        foreach (char ch in talkData[TalkData].ToString())
+        foreach (char ch in talkData[DialogeSystemType.TalkData].ToString())
         {
             buf += ch;
-            yield return new WaitForSeconds((float)talkData[TalkSpeed]);
+            yield return new WaitForSeconds((float)talkData[DialogeSystemType.TalkSpeed]);
             talkTextBox.text = buf;
 
             if (isLineSkip)
             {
-                talkTextBox.text = talkData[TalkData].ToString();  // 전체 텍스트를 한 번에 출력
+                talkTextBox.text = talkData[DialogeSystemType.TalkData].ToString();  // 전체 텍스트를 한 번에 출력
                 break;
             }
         }
 
-        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+        yield return dialogPrintSkip;
+
         isPrinting = false;
         isLineSkip = false;
 
