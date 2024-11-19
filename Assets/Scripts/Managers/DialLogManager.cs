@@ -44,7 +44,8 @@ public class DialogeManager : Singleton<DialogeManager>
         strBuilder.Append(DialogeSystemType.DialogeFilePath);
         strBuilder.Append(CallStageDialogNum.ToString());
 
-        data_Dialog = CSVReader.Read(strBuilder.ToString()); //CSVReader의 Read 메서드로 해당 엑셀csv 데이터를 읽어온다.
+        //CSVReader의 Read 메서드로 해당 엑셀csv 데이터를 읽어온다.
+        data_Dialog = CSVReader.Read(strBuilder.ToString());
 
         //캐릭터 왼쪽,오른쪽 이미지 출력 X
         leftTalker.gameObject.SetActive(false);
@@ -59,7 +60,7 @@ public class DialogeManager : Singleton<DialogeManager>
         //출력중이 아니고 대화창 출력문장이 더 남아있을때
         if (!isPrinting && index < data_Dialog.Count)
         {
-
+            //선택지 인경우 선택지 문장을 출력 
             if ((bool)data_Dialog[index][DialogeSystemType.Select])
             {
                 SelectsPrint();
@@ -75,6 +76,7 @@ public class DialogeManager : Singleton<DialogeManager>
             index++;
         }
 
+        //문장스킵 상태가 아니고 마우스 입력이 들어왔을때 해당 문장을 스킵하는 기능(빨리 읽기)
         if (!isLineSkip && Input.GetMouseButtonDown(0))
         {
             isLineSkip = true;
@@ -83,11 +85,13 @@ public class DialogeManager : Singleton<DialogeManager>
 
     public void SetTalkDataIndex(int value)
     {
+        //현재 인덱스를 인자값 위치로 이동 
         index += value;
 
-        //선택지에따라 해당 대화 브런치(가지)로 이동하는 것을 디버깅하는 로그 
+        //선택지에따라 해당 대화 브런치(가지)로 이동하는 것을 로그로 확인하기 위한 코드 
         Debug.Log(index + " " + value + " " + index + value);
 
+        //선택지 오브젝트가 켜져있으면 비활성화
         if (selectWindow.gameObject.activeSelf)
         {
             selectWindow.gameObject.SetActive(false);
@@ -96,11 +100,13 @@ public class DialogeManager : Singleton<DialogeManager>
 
     private void SelectsPrint()
     {
+        //선택지 활성화
         if (!selectWindow.gameObject.activeSelf)
         {
             selectWindow.gameObject.SetActive(true);
         }
 
+        //선택지의 문장 출력 
         selectWindow.PrintSelectData(data_Dialog[index]);
     }
 
@@ -175,6 +181,7 @@ public class DialogeManager : Singleton<DialogeManager>
         NameTalkDataClear();
 
         nameText.text = talkData[DialogeSystemType.Name].ToString();
+
         string buf = "";
         foreach (char ch in talkData[DialogeSystemType.TalkData].ToString())
         {
@@ -184,7 +191,7 @@ public class DialogeManager : Singleton<DialogeManager>
 
             if (isLineSkip)
             {
-                talkTextBox.text = talkData[DialogeSystemType.TalkData].ToString();  // 전체 텍스트를 한 번에 출력
+                talkTextBox.text = talkData[DialogeSystemType.TalkData].ToString(); // 전체 텍스트를 한 번에 출력
                 break;
             }
         }

@@ -6,6 +6,7 @@ namespace Structs
     [System.Serializable]
     public struct TalkData
     {
+        public int index;
         public string fileName;
         public CharacterPos pos;
         public CharacterPos offPos;
@@ -15,7 +16,7 @@ namespace Structs
         public float talkSpeed;
         public string bgmName;
         public string sfxName;
-      
+ 
     }
 
     [System.Serializable]

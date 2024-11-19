@@ -4,6 +4,7 @@ namespace Constains
 {
     public static class DialogeSystemType
     {
+        public static readonly string Index = "Index";
         public static readonly string FileName = "FileName";
         public static readonly string Pos = "Pos";
         public static readonly string OffPos = "OffPos";
