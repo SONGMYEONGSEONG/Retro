@@ -823,6 +823,7 @@ MonoBehaviour:
   nameText: {fileID: 558682470}
   talkTextBox: {fileID: 1631575479}
   selectWindow: {fileID: 860812246}
+  CallStageDialogNum: 2
 --- !u!1 &1016284912
 GameObject:
   m_ObjectHideFlags: 0
