@@ -720,7 +720,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2562554125776368470}
   - component: {fileID: 1408518342097960274}
-  - component: {fileID: 1424955019910017575}
+  - component: {fileID: 686610942744157499}
   m_Layer: 6
   m_Name: HanDoLee
   m_TagString: Untagged
@@ -759,8 +759,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterData: {fileID: 11400000, guid: f92978bb563a6ac459dc9b93e7939058, type: 2}
   characterStatusDisPlay: {fileID: 7498072641990362763}
---- !u!61 &1424955019910017575
-BoxCollider2D:
+--- !u!58 &686610942744157499
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -791,19 +791,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0906651, y: -0.46465862}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0.05, y: -0.11200774}
   serializedVersion: 2
-  m_Size: {x: 1.9519839, y: 2.2239788}
-  m_EdgeRadius: 0
+  m_Radius: 1.3512573
 --- !u!1 &5593417726845143283
 GameObject:
   m_ObjectHideFlags: 0

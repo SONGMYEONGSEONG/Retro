@@ -8,7 +8,12 @@ public class AttackCard : CardController
     protected override void Awake()
     {
         base.Awake();
-        attackCardData = CardSO as AttackCardSO;
+       
+    }
+
+    public override void Initialize(DefaultCardSO cardSO)
+    {
+        attackCardData = cardSO as AttackCardSO;
     }
 
     public override void CardDataPrint()
@@ -19,7 +24,7 @@ public class AttackCard : CardController
         Value.text = attackCardData.Attack.ToString();
 
         //카드 이미지 출력
-        if (CardSO.CardSprite != null)
+        if (attackCardData.CardSprite != null)
         {
             renderer.sprite = CardSO.CardSprite;
         }

@@ -13,9 +13,12 @@ public class EnemyCard : CardController
     protected override void Awake()
     {
         base.Awake();
-        enemyCardData = CardSO as EnemyCardSO;
+      
     }
-
+    public override void Initialize(DefaultCardSO cardSO)
+    {
+        enemyCardData = cardSO as EnemyCardSO;
+    }
     public override void DrawUseCard()
     {
         throw new System.NotImplementedException();
@@ -33,7 +36,7 @@ public class EnemyCard : CardController
         EnemyActionTurn.text = enemyCardData.ActionTurn.ToString();
 
         //카드 이미지 출력
-        if (CardSO.CardSprite != null)
+        if (enemyCardData.CardSprite != null)
         {
             renderer.sprite = CardSO.CardSprite;
         }

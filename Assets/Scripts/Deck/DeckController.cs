@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Structs;
 
+//WTF 코드 ㅈㄴ 꼬였네 
+
 
 //카드를 컨테이너로 저장하고 있고 사용시 카드를 월드에 생성해주는 클래스입니다.
 public class DeckController : MonoBehaviour
 {
     public Queue<CardController> Deck = new Queue<CardController>();
     public DeckSO deckListData;
-
+    
     [SerializeField] private CardPos[] cardPositions; //카드개 배치되는 좌표의 위치
     private int index = 0;
 
@@ -22,7 +24,7 @@ public class DeckController : MonoBehaviour
 
         for (int i = 0; i < deckListData.CardCount; i++)
         {
-            CardController deckCard = CardCreateManager.Instance.CreateCard(deckListData.cards[i]);
+            CardController deckCard = CardCreateManager.Instance.CreateCard(deckListData.cards[i].CardID);
             
             Deck.Enqueue(deckCard);
         }

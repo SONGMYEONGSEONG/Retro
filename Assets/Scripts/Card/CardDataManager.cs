@@ -9,7 +9,7 @@ public class CardDataManager : Singleton<CardDataManager>
     //Key : cardID , Value : CardData
     public Dictionary<int, DefaultCardSO> CardDatas = new Dictionary<int, DefaultCardSO>();
 
-    public void Awake()
+    protected override void Awake()
     {
         DefaultCardSO[] attackCardDatas = Resources.LoadAll<DefaultCardSO>("ScriptableObject/AttacksCardSO");
 

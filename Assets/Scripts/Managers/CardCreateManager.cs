@@ -5,37 +5,42 @@ using UnityEngine;
 
 public class CardCreateManager : Singleton<CardCreateManager>
 {
-    private CardController cardControllerPrefeb;
+    private CardController[] cardControllerPrefeb;
     protected override void Awake()
     {
         base.Awake();
-        cardControllerPrefeb = Resources.Load<CardController>("Prefebs/Card/Card");
-
-        if (cardControllerPrefeb == null)
-        {
-            Debug.LogError($"{cardControllerPrefeb.name}이 null 입니다. 경로를 확인해주세요");
-        }
+        cardControllerPrefeb = Resources.LoadAll<CardController>("Prefebs/Card");
     }
 
-    public CardController CreateCard(DefaultCardSO cardData)
+    public CardController CreateCard(int cardID)
     {
-        CardController card = Instantiate(cardControllerPrefeb, GameManager.Instance.Player.CurrentDeck.transform);
-        card.CardSO = cardData;
+        if (CardDataManager.Instance.CardDatas.ContainsKey(cardID))
+        {
 
-        ////들어온 카드SO에따라 데이터 표기 및 적용을 다르게 진행 
-        //if (card.CardSO is EnemyCardSO enemyCard)
-        //{
-        //    card.OnEnanleEnemyCard();
-           
-        //}
-        //else
-        //{
-        //    card.OnEnableDefaultCard();
-        //}
+            DefaultCardSO cardData = CardDataManager.Instance.CardDatas[cardID];
 
-        card.CardDataPrint();
-        card.gameObject.SetActive(false);
+            int cardType = (cardID / 1000) - 1; //매직넘버 + 데이터 처리방식 잇앗함 
 
-        return card;
+            CardController card = Instantiate(cardControllerPrefeb[cardType], GameManager.Instance.Player.CurrentDeck.transform);
+            card.Initialize(cardData);
+
+            ////들어온 카드SO에따라 데이터 표기 및 적용을 다르게 진행 
+            //if (card.CardSO is EnemyCardSO enemyCard)
+            //{
+            //    card.OnEnanleEnemyCard();
+
+            //}
+            //else
+            //{
+            //    card.OnEnableDefaultCard();
+            //}
+
+            card.CardDataPrint();
+            card.gameObject.SetActive(false);
+
+            return card;
+        }
+
+        return null;
     }
 }

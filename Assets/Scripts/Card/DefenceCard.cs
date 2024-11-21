@@ -8,9 +8,12 @@ public class DefenceCard : CardController
     protected override void Awake()
     {
         base.Awake();
-        defenceCardData = CardSO as DefenceCardSO;
+       
     }
-
+    public override void Initialize(DefaultCardSO cardSO)
+    {
+        defenceCardData = cardSO as DefenceCardSO;
+    }
     public override void CardDataPrint()
     {
         //카드 오브젝트에 표기
@@ -20,7 +23,7 @@ public class DefenceCard : CardController
         Value.text = defenceCardData.Defence.ToString();
 
         //카드 이미지 출력
-        if (CardSO.CardSprite != null)
+        if (defenceCardData.CardSprite != null)
         {
             renderer.sprite = CardSO.CardSprite;
         }

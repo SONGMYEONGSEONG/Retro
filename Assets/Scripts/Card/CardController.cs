@@ -39,6 +39,7 @@ public abstract class CardController : MonoBehaviour , ICard
         InputController.OnEventCardClick -= ClickUseCard;
     }
 
+    public abstract void Initialize(DefaultCardSO cardSO);
     public abstract  void DrawUseCard();
     public abstract  void ClickUseCard();
     public abstract void CardDataPrint();
