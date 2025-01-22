@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 827c73e8ea93df743a3c7cddd1df210f, type: 3}
   m_Name: Bat
   m_EditorClassIdentifier: 
-  CardID: 0
+  CardID: 3000
   _Name: "\uBC15\uC950"
   Description: "\uBC15\uC950 \uBAAC\uC2A4\uD130"
-  Value: 0
   CardSprite: {fileID: 0}
   isBuff: 0
   BufTurn: 

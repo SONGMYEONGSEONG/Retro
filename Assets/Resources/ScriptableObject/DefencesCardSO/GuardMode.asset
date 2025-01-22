@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55847907913ff884580b02d06e055f81, type: 3}
   m_Name: GuardMode
   m_EditorClassIdentifier: 
-  CardID: 0
-  _Name: 
-  Description: 
+  CardID: 2000
+  _Name: "\uAC00\uB4DC\uBAA8\uB4DC"
+  Description: "\uBC29\uC5B4\uB3C4 10\uC744 \uC5BB\uC2B5\uB2C8\uB2E4."
   CardSprite: {fileID: 0}
   isBuff: 0
   BufTurn: 
@@ -22,4 +22,4 @@ MonoBehaviour:
   isCost: 0
   StatusType: 
   CostStatChangeValue: 
-  Defence: 0
+  Defence: 10

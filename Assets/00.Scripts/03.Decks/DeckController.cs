@@ -1,0 +1,52 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Structs;
+
+//WTF 코드 ㅈㄴ 꼬였네 
+
+
+//카드를 컨테이너로 저장하고 있고 사용시 카드를 월드에 생성해주는 클래스입니다.
+public class DeckController : MonoBehaviour
+{
+    public Queue<BaseCard> Deck = new Queue<BaseCard>();
+    public DeckSO deckListData;
+    
+    [SerializeField] private CardPos[] cardPositions; //카드개 배치되는 좌표의 위치
+    private int index = 0;
+
+    private void Start()
+    {
+        if (deckListData == null)
+        {
+            deckListData = Resources.Load<DeckSO>("ScriptableObject/DeckSO");
+        }
+
+        for (int i = 0; i < deckListData.CardCount; i++)
+        {
+            BaseCard deckCard = CardCreateManager.Instance.CreateCard(deckListData.cards[i].CardID);
+            
+            Deck.Enqueue(deckCard);
+        }
+
+    }
+
+    public BaseCard GetCard()
+    {
+        if(Deck.Count <= 0)
+        {
+            Debug.Log("Deck에 카드가 없습니다.");
+            return null;
+        }
+
+        BaseCard card = Deck.Dequeue();
+        card.gameObject.SetActive(true);
+
+        cardPositions[index].IsCard = true;
+        card.MoveCard(cardPositions[index].Position);
+        index++;
+        return card;
+    }
+
+
+}
